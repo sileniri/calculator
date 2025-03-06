@@ -250,6 +250,7 @@ button:active {
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 50;
 
     background-color: hsl(0, 0%, 15%);
     border: none;
