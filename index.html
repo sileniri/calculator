@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="The best online calculator in the world" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet" />
+    <link id="pagestyle" rel="stylesheet" href="styles.css" type="text/css" />
+</head>
+
+<body>
+    <nav class="options">
+        <div class="optionBar">
+            <div class="optionsInputCont">
+                <h1>Select Type</h1>
+                <div class="dropDown">
+                    <button id="type-btn" class="dropDownBtn" title="Set type">Standard</button>
+                    <div class="dropDownOptions">
+                        <button onclick="setType('Standard')" title="Set type to standard">Standard</button>
+                        <button onclick="setType('Scientific')" title="Set type to Scientific">Scientific</button>
+                    </div>
+                </div>
+                <hr>
+                <h1>Select Theme</h1>
+                <div class="dropDown">
+                    <button id="theme-btn" class="dropDownBtn" title="Set theme">Dark Theme</button>
+                    <div class="dropDownOptions">
+                        <button onclick="setTheme('Dark')" title="Set theme to dark">Dark Theme</button>
+                        <button onclick="setTheme('Light')" title="Set theme to light">Light Theme</button>
+                        <button onclick="settingsPopup('open')">Custom Theme</button>
+                    </div>
+                </div>
+                <hr>
+            </div>
+        </div>
+        <button id="openMenu" onclick="openMenu()">
+            <span id="menuIcon">
+                <span class="material-symbols-rounded" id="closeIcon">close</span>
+                <span class="material-symbols-rounded active" id="openIcon">menu</span>
+            </span>
+        </button>
+    </nav>
+    <main class="mainWindow">
+        <div class="help">
+            <button id="infoButton">
+                <span class="material-symbols-rounded" id="infoIcon">info</span>
+            </button>
+            <p id="infoText">
+                AC = All Clear: Deletes everything<br>
+                CE = Clear Entry:   Deletes last inputted thing<br>
+                x<sup>y</sup>:      
+            </p>
+        </div>
+        <div id="calculator">
+            <div class="keys">
+                <section class="displayCont">
+                    <input id="display" type="text" readonly />
+                    <button onclick="moveCursor('left')" class="left_arrow">
+                        <span class="material-symbols-rounded">arrow_left</span>
+                    </button>
+                    <button onclick="moveCursor('right')" class="arrow">
+                        <span class="material-symbols-rounded">arrow_right</span>
+                    </button>
+                    <div id="cursor" class="blinkMe"></div>
+                </section>
+                <section class="operatorBtnCont">
+                    <button onclick="appendToDisplay('+')">+</button>
+                    <button onclick="appendToDisplay('-')">-</button>
+                    <button onclick="appendToDisplay('×')">×</button>
+                    <button onclick="appendToDisplay('÷')">÷</button>
+                </section>
+                <section class="scientificCont">
+                    <button onclick="appendToDisplay('()')">()</button>
+                    <button onclick="appendToDisplay('cos()')">cos</button>
+                    <button onclick="appendToDisplay('π')">π</button>
+                    <button onclick="appendToDisplay('e')">e</button>
+                    <button onclick="appendToDisplay('√()')">√</button>
+                    <button onclick="appendToDisplay('^')">x<sup>y</sup></button>
+                </section>
+                <section class="standardCont">
+                    <button onclick="appendToDisplay('7')">7</button>
+                    <button onclick="appendToDisplay('8')">8</button>
+                    <button onclick="appendToDisplay('9')">9</button>
+                    <button onclick="appendToDisplay('4')">4</button>
+                    <button onclick="appendToDisplay('5')">5</button>
+                    <button onclick="appendToDisplay('6')">6</button>
+                    <button onclick="appendToDisplay('1')">1</button>
+                    <button onclick="appendToDisplay('2')">2</button>
+                    <button onclick="appendToDisplay('3')">3</button>
+                    <button onclick="appendToDisplay('.')">.</button>
+                    <button onclick="appendToDisplay('0')">0</button>
+                    <button onclick="appendToDisplay('00')">00</button>
+                </section>
+                <section class="clearCont">
+                    <button onclick="allClear()" aria-label="AC, All Clear">AC</button>
+                    <button onclick="clearEntry()" aria-label="CE, Clear Last Entry">CE</button>
+                </section>
+                <button onclick="calculate()" class="equal">=</button>
+            </div>
+        </div>
+        <div class="settingsPopup hidden">
+            <button onclick="settingsPopup('close')">
+                <span class="material-symbols-rounded">close</span>
+            </button>
+            <form action="set-custom-theme">
+                <label for="main-btns">Main Buttons</label>
+                <input id="main-btns" type="color" />
+                <label for="operator-btns">Operator Buttons</label>
+                <input id="operator-btns" type="color" />
+                <label for="scientific-btns">Scientific Buttons</label>
+                <input id="scientific-btns" type="color" />
+                <label for="calculator-bg">Calculator Background</label>
+                <input id="calculator-bg" type="color" />
+                <label for="background">Background</label>
+                <input id="background" type="color" />
+            </form>
+            <button onclick="setCustomTheme()">Save Changes</button>
+            <p>Please note: the changed colours will not be changed back once you change theme to dark/light, you can
+                still change them in custom theme.</p>
+        </div>
+    </main>
+
+    <script src="index.js" type="text/javascript"></script>
+</body>
+
+</html>
